@@ -1,0 +1,8 @@
+shell:
+    name: AristaEOSShell
+    author: ericr
+    email: info@quali.com
+    description: Describe the purpose of your CloudShell shell
+    version: 4.0.248
+    driver_name: Generic Arista EOS Driver Version1
+    networking_standard_version: 4.0.1

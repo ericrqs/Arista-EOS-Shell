@@ -1,0 +1,4 @@
+*.pyc
+package/cloudshell_networking_arista_eos.egg-info
+package/dist
+arista_eos_shell/src/test_eos.py
