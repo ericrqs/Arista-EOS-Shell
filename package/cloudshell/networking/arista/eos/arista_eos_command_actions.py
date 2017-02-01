@@ -47,6 +47,6 @@ def install_firmware(config_session, logger, firmware_file_name):
     :param firmware_file_name: firmware file name
     """
 
-    config_session.send_command(**BOOT_SYSTEM_FILE.get_command(firmware_file_name))
-    config_session.send_command(**CONFIG_REG.get_command())
+    config_session.send_command(**BOOT_SYSTEM_FILE.get_command(firmware_file_name=firmware_file_name))
+    # config_session.send_command(**CONFIG_REG.get_command())
 
