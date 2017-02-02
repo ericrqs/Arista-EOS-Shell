@@ -3,10 +3,11 @@
 
 import re
 
-from cloudshell.networking.arista.eos.arista_eos_command_actions import install_firmware, copy, show_boot
+from cloudshell.networking.arista.eos.arista_eos_command_actions import install_firmware, copy
+from cloudshell.networking.arista.eos.arista_eos_command_actions import show_boot as get_current_os_version
 
 from cloudshell.networking.cisco.cisco_command_actions import get_current_boot_config, \
-    remove_port_configuration_commands, reload_device, get_current_os_version
+    remove_port_configuration_commands, reload_device
 from cloudshell.networking.devices.flows.action_flows import LoadFirmwareFlow
 from cloudshell.networking.devices.networking_utils import UrlParser
 
@@ -42,6 +43,6 @@ class AristaEOSLoadFirmwareFlow(LoadFirmwareFlow):
                                 "Can't add firmware '{}' for boot!".format(firmware_file_name))
             copy(enable_session, self._logger, "running-config", "startup-config", vrf=vrf)
             reload_device(enable_session, self._logger, timeout)
-            boot_conf = show_boot(enable_session)
-            if boot_conf.find(firmware_file_name) == -1:
+            os_version = get_current_os_version(enable_session)
+            if os_version.find(firmware_file_name) == -1:
                 raise Exception(self.__class__.__name__, "Failed to load firmware, Please check logs")

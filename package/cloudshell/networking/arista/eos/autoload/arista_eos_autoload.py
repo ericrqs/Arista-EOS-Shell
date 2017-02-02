@@ -48,6 +48,10 @@ class AristaEOSAutoload(CiscoGenericSNMPAutoload):
         path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'mibs'))
         self.snmp.update_mib_sources(path)
 
+    # def load_cisco_mib(self):
+    #     path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'cisco', 'mibs'))
+    #     self.snmp.update_mib_sources(path)
+
     def discover(self):
         """General entry point for autoload,
         read device structure and attributes: chassis, modules, submodules, ports, port-channels and power supplies
@@ -60,8 +64,10 @@ class AristaEOSAutoload(CiscoGenericSNMPAutoload):
         self.logger.info('************************************************************************')
         self.logger.info('Start SNMP discovery process .....')
 
+
         self.load_arista_mib()
-        self.snmp.load_mib(['ARISTA-SMI-MIB',
+        self.snmp.load_mib([
+            'ARISTA-SMI-MIB',
                             'ARISTA-ACL-MIB',
                             # 'ARISTA-BGP4V2-MIB',
                             # 'ARISTA-BGP4V2-TC-MIB',
@@ -82,6 +88,10 @@ class AristaEOSAutoload(CiscoGenericSNMPAutoload):
                             'ARISTA-TEST-MIB',
                             'ARISTA-VRF-MIB',
                             ])
+
+        # self.load_cisco_mib()
+        # self.snmp.load_mib(['CISCO-PRODUCTS-MIB', 'CISCO-ENTITY-VENDORTYPE-OID-MIB',])
+
         self._get_device_details()
         self._load_snmp_tables()
 

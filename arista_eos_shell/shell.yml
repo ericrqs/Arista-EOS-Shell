@@ -3,6 +3,6 @@ shell:
     author: ericr
     email: info@quali.com
     description: Describe the purpose of your CloudShell shell
-    version: 4.0.262
+    version: 4.0.271
     driver_name: Generic Arista EOS Driver Version1
-    networking_standard_version: 4.0.1
+    networking_standard_version: 4.0.271.0.1
